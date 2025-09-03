@@ -1,7 +1,7 @@
 import Redis from "ioredis";
 
 // koneksi ke Redis Upstash pakai URL dari .env
-const redis = new Redis(process.env.KV_URL);
+const redis = new Redis(process.env.KV_REDIS_URL);
 
 export default async function handler(req, res) {
   try {
