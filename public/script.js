@@ -1,32 +1,25 @@
-// === Background Stars & Meteors ===
+// ==== Background (stars & meteors) ====
 const night = document.getElementById("night");
 
-// Generate random stars
-function createStars(count = 50) {
-  for (let i = 0; i < count; i++) {
-    const star = document.createElement("div");
-    star.classList.add("star");
-    star.style.top = Math.random() * 100 + "vh";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.animationDuration = (Math.random() * 2 + 1) + "s";
-    night.appendChild(star);
-  }
+// Generate stars
+for (let i = 0; i < 50; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.animationDuration = (2 + Math.random() * 3) + "s";
+  night.appendChild(star);
 }
 
-// Generate random meteors
-function createMeteors(count = 5) {
-  for (let i = 0; i < count; i++) {
-    const meteor = document.createElement("div");
-    meteor.classList.add("shooting_star");
-    meteor.style.top = Math.random() * 80 + "vh";
-    meteor.style.left = Math.random() * 100 + "vw";
-    meteor.style.animationDelay = (Math.random() * 8) + "s";
-    night.appendChild(meteor);
-  }
+// Generate meteors
+for (let i = 0; i < 5; i++) {
+  const meteor = document.createElement("div");
+  meteor.className = "shooting_star";
+  meteor.style.top = Math.random() * 50 + "%";
+  meteor.style.left = Math.random() * 100 + "%";
+  meteor.style.animationDelay = (Math.random() * 10) + "s";
+  night.appendChild(meteor);
 }
-
-createStars(60);
-createMeteors(6);
 
 // === Like Feature (Redis) ===
 const likeBtn = document.getElementById("likeBtn");
@@ -66,32 +59,22 @@ likeBtn.addEventListener("keydown", (e) => {
 // Initial load
 getLikes();
 
-// === Contact Button ===
-document.getElementById("contactBtn").addEventListener("click", () => {
+// ==== Contact button ====
+document.getElementById("contactBtn").onclick = () => {
   window.open("https://t.me/AlwaysRexx", "_blank");
-});
+};
 
-// === Share Button ===
-document.getElementById("shareBtn").addEventListener("click", async () => {
+// ==== Share button ====
+document.getElementById("shareBtn").onclick = async () => {
   const shareData = {
-    title: "Profile Rexxin Official",
+    title: "Profile of Rexxin Official",
     text: "Check out this awesome profile!",
     url: window.location.href,
   };
-
   if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      alert("Profile shared successfully!");
-    } catch (err) {
-      console.error("Share failed:", err);
-    }
+    await navigator.share(shareData);
   } else {
-    try {
-      await navigator.clipboard.writeText(shareData.url);
-      alert("Link copied to clipboard!");
-    } catch (err) {
-      alert("Failed to copy link: " + err.message);
-    }
+    await navigator.clipboard.writeText(shareData.url);
+    alert("Link copied to clipboard!");
   }
-});
+};
