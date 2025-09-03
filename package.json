@@ -1,0 +1,13 @@
+{
+  "name": "rexxin-profile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "@vercel/kv": "^0.2.4"
+  }
+}
