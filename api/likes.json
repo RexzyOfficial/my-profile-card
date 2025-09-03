@@ -1,0 +1,13 @@
+import { kv } from "@vercel/kv";
+
+export default async function handler(req, res) {
+  if (req.method === "GET") {
+    const likes = (await kv.get("likes")) || 0;
+    res.status(200).json({ likes });
+  } else if (req.method === "POST") {
+    const likes = await kv.incr("likes");
+    res.status(200).json({ likes });
+  } else {
+    res.status(405).end();
+  }
+}
